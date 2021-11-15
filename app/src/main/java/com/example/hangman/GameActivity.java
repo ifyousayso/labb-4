@@ -49,8 +49,7 @@ public class GameActivity extends AppCompatActivity {
 		this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		this.getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_sentiment_very_dissatisfied_24);
 
-		String[] words = Tools.loadTextAsset(this, "dictionary.txt");
-		this.theWord = words[(int) Math.floor(Math.random() * words.length)];
+		this.theWord = MainActivity.pickWord();
 
 		// Save the elements:
 		this.art = (Art) this.findViewById(R.id.hangman_art);
@@ -180,8 +179,8 @@ public class GameActivity extends AppCompatActivity {
 		// If it's over, disable the guess edit and change the guess button text. (see the beginning of this method)
 		if (this.failsRemaining < 0 || this.gameOver) {
 			this.gameOver = true;
-			this.guessEdit.setVisibility(View.INVISIBLE);
 			this.guessEdit.setEnabled(false);
+			this.guessEdit.setVisibility(View.INVISIBLE);
 			((Button) this.findViewById(R.id.guess_button)).setText(R.string.game_over);
 		}
 	}

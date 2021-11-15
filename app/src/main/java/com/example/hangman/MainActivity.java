@@ -7,6 +7,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+	private static String[] words;
+
 	// Purpose: Here's code to run upon the creation of the activity.
 	// Arguments: Bundle savedInstanceState
 	// Return: -
@@ -18,6 +20,16 @@ public class MainActivity extends AppCompatActivity {
 
 		// Hide the top app bar.
 		this.getSupportActionBar().hide();
+
+		// Load and store all words once.
+		MainActivity.words = Tools.loadTextAsset(this, "dictionary.txt");
+	}
+
+	// Purpose: Pick a word from the stored array and return it.
+	// Arguments: -
+	// Return: String
+	public static String pickWord() {
+		return MainActivity.words[(int) Math.floor(Math.random() * MainActivity.words.length)];
 	}
 
 	// Purpose: This button selects a word from the dictionary and starts GameActivity with it.
